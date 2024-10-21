@@ -460,138 +460,70 @@
                 Therefore, the hybrid agent achieves sota performance among agents that are task-agnostic.
             </p>
 
+            <h3 class="text">Does API Quality Matter?</h3>
             <p class="text">
-                <strong>Multilingual Multimodal Results</strong>
-                We show the performance of models on the multimodal tasks from PangeaBench in <a href="#tab:final_table">Table 1</a>.
-                The results provide clear insights into the strengths and remaining challenges of Pangea-7B in multilingual and multimodal tasks. Key observations from the evaluation include:
-                <br>
-                1) Superior English and Multilingual Performance: Pangea-7B outperforms existing open-source models across both English and multilingual tasks. Particularly in cultural understanding (CVQA, MaRVL), it has achieved substantial gains, highlighting its effectiveness in both cross-lingual and cross-cultural contexts.
-                <br>
-                2) Balanced Cross-Language Capabilities: Unlike many models that exhibit a significant drop in performance when moving from English to multilingual tasks, Pangea-7B is relatively consistent. For instance, in Multimodal Chat tasks, the performance gap between English and multilingual remains relatively small, indicating its ability to handle multiple languages effectively.
-                <br>
-                3) Challenges Compared to Proprietary Models: While Pangea-7B leads in open-source models, some gaps remain when compared to closed-source models like GPT4o. Additionally, though Pangea-7B narrows the gap between English and multilingual performance, there is still room for improvement in fully closing this divide across all tasks.
+                The short answer is yes, API quality does significantly impact the performance of the API-based agent.
+                High-quality APIs, with comprehensive, well-documented endpoints, enable efficient and accurate task execution. 
+                This allows the API-based agent to rely on fewer web browsing actions, while hybrid agents can switch more flexibly between methods. 
+                Websites like Gitlab and Map, which offer robust APIs, result in the highest task completion accuracy. 
+                Conversely, low-quality APIs hinder agent performance, forcing hybrid agents to rely more on web browsing. 
+                For instance, on Reddit, the initial API-based agent struggled due to limited API availability. 
+                After manually introducing additional APIs, performance improved from 9.43% to 18.9%, highlighting the importance of thorough API support.
             </p>
 
+            <figure id="fig:case1">
+                <img data-zoomable="" draggable="false" src="static/img/case1.png" alt="case1" style="width: 80%" class="center">
+                <figcaption>
+                    <strong>Figure 4:</strong> Case 1: the hybrid agent succeeds while the browsing agent and API-based agent both fail
+                </figcaption>
+            </figure> 
+            <h3 class="text">Case Study 1</h3>
             <p class="text">
-                <strong>Multilingual Text-only Results</strong>
-                We further evaluate our model in text-only scenarios in <a href="#tab:text_table">Table 2</a>. Interesting findings include:
-                <br>
-                1) Best Text Performance Among Multimodal LLMs: Pangea-7B demonstrates the strongest performance among all multimodal LLMs in the text-only tasks consistently outperforming baselines like Llava-Next-7B. This highlights that, despite being trained as a multimodal model, Pangea-7B maintains superior text understanding and reasoning capabilities compared to other MLLMs.
-                <br>
-                2) Maintained Performance from its Text Backbone:  Pangea-7B generally maintains or sees slight drops in performance on most text-only benchmarks compared with its text backbone Qwen2-7B-Instruct. Notably, the model shows a significant improvement in MGSM. This improvement is directly attributable to the inclusion of math-related instructions in PangeaIns, which enhances the model's capability to handle complex multilingual reasoning and mathematical tasks.
+                One example where the hybrid agent succeeded, while both the API-based and browsing agents failed, involved a task from the Shopping Admin domain. 
+                The query was to "delete all negative reviews for Sybil running short," a product listed in the shopping admin interface. 
+                In this instance, the API-based agent failed because no relevant API endpoints were available for retrieving or deleting reviews. 
+                Similarly, the browsing agent failed, as completing this task purely through web navigation required too many steps, as depicted in <a href="#fig:case1">Figure 4</a>. 
+                This complexity made the task challenging for an agent relying solely on web interactions.
+                However, the hybrid agent successfully completed the task by leveraging both API and browsing functionalities. An example trace of the hybrid agent shown in Figure <a href="#fig:case1">Figure 4</a>.
+                This case highlights the hybrid agent's ability to efficiently combine API calls with web interactions, allowing it to tackle complex multi-step tasks that would be difficult or impossible for solely browsing or solely API-based agents.
             </p>
-
             
-            <figcaption style="text-align: center; width: 100%;">
-                Table 2: Models' multilingual text-only evaluation results on PangeaBench.
-            </figcaption>
-        
+            <figure id="fig:case2">
+                <img data-zoomable="" draggable="false" src="static/img/case2.png" alt="case2" style="width: 80%" class="center">
+                <figcaption>
+                    <strong>Figure 5:</strong> Case 2: the API-based agent succeeds while the browsing agent and the hybrid agent fails.
+                </figcaption>
+            </figure> 
 
-        </div>
-
-        <div id='discussion' class="discussion-block">
-            <h1 class="text">Discussion</h1>
-
-            <d-figure id="fig:scaling_effect">
-                <figure>
-                    <img data-zoomable="" draggable="false" src="static/img/scaling_effect.png" alt="scaling effect">
-                    <figcaption>
-                        <strong>Figure 5:</strong> Scaling effect of training samples on English and multilingual scores across datasets.
-                    </figcaption>
-                </figure>
-            </d-figure>
-
+            <h3 class="text">Case Study 2</h3>
             <p class="text">
-                <strong>Scaling Effect of Number of Instructions:</strong>
-                Understanding how the quantity of instructions affects model performance is crucial for optimizing training strategies and resource allocation. 
-                <a href="#fig:scaling_effect">Figure 5</a> reveals a clear scaling effect related to the number of instructions used during training. 
-                Performance improvements were consistent as we increased the number of multilingual instructions in PangeaIns, for both English and multilingual performance. 
-                This demonstrates the necessity of scaling multilingual multimodal instruction tuning. 
-            </p>
-
-            <d-figure id="fig:english_ratio" style="display: flex; justify-content: center;">
-                <figure>
-                    <img data-zoomable="" draggable="false" src="static/img/english_vs_multilingual.png" alt="english_vs_multilingual" style="width: 60%" class="center">
-                    <figcaption>
-                        <strong>Figure 6:</strong> Impact of English training data proportion on English vs. multilingual performance.
-                    </figcaption>
-                </figure>
-            </d-figure>
-
-            <p class="text">
-                <strong>Role of English Data:</strong>
-                In multilingual scenarios, English data plays a pivotal role in cross-lingual transfer. 
-                To investigate this, we sampled 500K examples from the translated data described in <a href="#machine_translation">Machine Translated Instructions</a>, ensuring a consistent data distribution. 
-                We varied the ratio of English data while keeping the total number of training samples fixed at 500K. 
-                For the 17 multilingual languages in the translated subset, we evenly distributed the number of samples across languages. 
-                As shown in <a href="#fig:english_ratio">Figure 6</a>, English performance generally improves as the percentage of English data increases. 
-                More surprisingly, using no English data (full multilingual data) results in relatively lower multilingual performance. 
-                As we introduce more English data, multilingual performance improves, peaking at 38.7% with 40% English. 
-                However, performance drops sharply when English data reaches 100%. 
-                This suggests that English data aids cross-lingual transfer, however, over-reliance on it harms multilingual performance. 
+                Conversely, there are instances where the API-based agent outperforms the hybrid agent. 
+                One such case occurred in the GitLab website, where the task was to "tell me the email address of the contributor who has the most commits to <code>ai</code>". 
+                The API-based agent successfully completed this task by utilizing the <code>GET /api/{id}/contributors</code> API endpoint to retrieve the contributor with the highest number of commits and their associated email address.
+                On the other hand, the hybrid agent attempted to solve the task through browsing but encountered significant challenges. Accessing this information through web browsing required navigating GitLab's interface, locating the correct repository and branch, and identifying the top contributor manually, a task that might be too difficult to perform through web navigation alone. 
+                As a result, both the browsing agent and the hybrid agent failed to complete the task. This case demonstrates an example where API access provides a more straightforward solution than browsing in contexts requiring structured data retrieval.
             </p>
         </div>
-
-        <d-figure id="fig:language_portion_downstream_performance">
-            <figure>
-                <img data-zoomable="" draggable="false" src="static/img/train_eval_perf_percentage.png" alt="train_eval_perf_percentage">
-                <figcaption>
-                    <strong>Figure 7:</strong> The relationship between training sample size (relative to English) and performance (relative to English) of different languages across four datasets.
-                </figcaption>
-            </figure>
-        </d-figure>
-
-        <p class="text">
-            <strong>How does the proportion of training samples in a language affect downstream performance?</strong>
-            An interesting question to ask is whether the downstream task performance is correlated with the number of training samples. 
-            Our analysis in <a href="#fig:language_portion_downstream_performance">Figure 7</a> revealed a nuanced relationship between training sample proportion and downstream performance. 
-            While there is a general positive correlation, the impact varies significantly across languages and tasks. 
-            For widely spoken languages with rich linguistic resources, we observed a near-linear relationship. 
-            However, for low-resource languages, even a small increase in proportion yielded disproportionately large performance gains. 
-            Interestingly, we also noted instances of positive transfer between typologically similar languages. 
-            These findings suggest that strategic allocation of training samples, considering both language prevalence and linguistic similarities, can optimize overall model performance.
-        </p>
-
-        <d-figure id="fig:ocr_accuracy" style="display: flex; justify-content: center;">
-            <figure>
-                <img data-zoomable="" draggable="false" src="static/img/ocr_accuracy.png" alt="ocr_accuracy" style="width: 60%" class="center">
-                <figcaption>
-                    <strong>Figure 8:</strong> A preliminary exploration of multilingual OCR.
-                </figcaption>
-            </figure>
-        </d-figure>
-
-        <p class="text">
-            <strong>Preliminary Explorations of Multilingual OCR:</strong>
-            Multilingual OCR emerged as a particularly challenging aspect of Pangea's functionality. 
-            We made efforts to enhance its multilingual OCR capabilities. 
-            Specifically, we constructed a dataset of 500K multilingual OCR instructions spanning 10 languages, with 50K examples per language, sourced from web user interfaces. 
-            Webpages naturally serve as image-rich environments containing abundant text, and by capturing screenshots of websites from various countries in different languages, we were able to gather a substantial number of OCR images. 
-            We employed the same model architecture as Pangea but trained it exclusively on these OCR images, reserving a portion of the data as a test set. As shown in <a href="#fig:ocr_accuracy">Figure 8</a>, the results indicate that improving multilingual OCR performance is feasible with an increase in training samples. 
-            However, the OCR accuracy for non-Latin scripts (e.g., Chinese, Japanese, and Korean) remains lower than for Latin-based languages. 
-            Looking ahead, we aim to further expand the multilingual OCR training dataset to include more languages and integrate this data into PangeaIns.
-        </p>
 
     </div>
 
         <div id="conclusion" style="position: relative; margin-top: 40px; margin-bottom: 0px;">
             <h2 class="text" style="margin-top:0px; margin-bottom:10px">Conclusion</h2>
             <p class="text">
-                We introduced Pangea, a novel multilingual multimodal large language model designed to bridge linguistic and cultural gaps in visual understanding tasks. 
-                By leveraging PangeaIns, our newly curated 6M multilingual multimodal instruction data samples, we demonstrated significant improvements in cross-lingual and cross-cultural understanding across 39 typologically diverse languages. 
-                Our comprehensive evaluation using PangeaBench revealed Pangea's superior performance compared to existing open-source models, particularly in tasks requiring nuanced cultural interpretation. 
-                We also highlight ongoing challenges in areas such as low-resource language support and multilingual OCR. 
-                We fully open-source Pangea, PangeaIns, and PangeaBench to facilitate future research to build open and inclusive MLLMs. 
+                We propose new web agents that use APIs instead of traditionally browsers. 
+                We found that API-based agents outperform browsing-based counterparts, especially on websites with sufficient API support. 
+                Hence we further propose an agent that is capable of switching between using APIs or browsers and empirically outperforms agents that only uses one of the two interfaces. 
+                For future work, we aim to explore methods for automatically inducing APIs using techniques such as Agent Workflow Memory (AWM) <d-cite key="wang2024agent"></d-cite>. 
+                These methods could identify and generate API calls for websites lacking formal API support, further expanding the applicability and efficiency of API-based approaches. 
+                By automating the discovery and utilization of APIs, we envision even more robust agents capable of handling diverse web tasks with minimal reliance on manual interaction through browsing.
             </p>
         </div>
 
         <div id="acknowledgement" style="position: relative; margin-top: 40px; margin-bottom: 0px;">
             <h2 class="text" style="margin-top:0px; margin-bottom:10px">Acknowledgement</h2>
             <p class="text">
-                This work was supported in part by the Carnegie Bosch Institute Fellowship and a grant from DSTA Singapore.  
-                The training is supported by the CMU FLAME Center. 
+                This work was supported in part by a grant from DSTA Singapore.  
                 The authors would like to thank CMU NeuLab colleagues for their constructive comments. 
-                The authors would like to thank Google Gemini credits for data construction and evaluation.
                 The authors would like to thank Cambrian team for their <a href="https://cambrian-mllm.github.io/" target="_blank">project webpage template</a>. 
             </p>
         </div>

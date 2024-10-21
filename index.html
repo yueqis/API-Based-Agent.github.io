@@ -132,10 +132,25 @@
             <figure>
                 <img data-zoomable="" draggable="false" src="static/img/main.png" alt="main">
                 <figcaption>
-                    <strong>Figure 1:</strong> A comparison of three types of agents. The Browsing Agent performs tasks through web browsing only, utilizing the accessibility tree to interact with web pages, achieving an average performance of 14.8% on WebArena. The API-Based Agent performs tasks by making API calls and generating code without relying on web browsing, achieving an average accuracy of 29.2%. The Hybrid Agent combines both methods, dynamically switching between web browsing and API calling, depending on the task. This allows the execution of either API calls or web browsing actions, or both in combination, improving performance by more than 5 percentage points compared to the API-Based Agent.
+                    <strong>Figure 1:</strong> A comparison of three types of agents. 
+                    The Browsing Agent performs tasks through web browsing only, utilizing the accessibility tree to interact with web pages, achieving an average performance of 14.8% on WebArena. 
+                    The API-Based Agent performs tasks by making API calls and generating code without relying on web browsing, achieving an average accuracy of 29.2%. 
+                    The Hybrid Agent combines both methods, dynamically switching between web browsing and API calling, depending on the task. 
+                    This allows the execution of either API calls or web browsing actions, or both in combination, improving performance by more than 5 percentage points compared to the API-Based Agent.
                 </figcaption>
             </figure>
         </d-figure>
+        
+        <figure id="fig:main">
+            <img data-zoomable="" draggable="false" src="static/img/main.png" alt="main">
+            <figcaption>
+                <strong>Figure 1:</strong> A comparison of three types of agents. 
+                The Browsing Agent performs tasks through web browsing only, utilizing the accessibility tree to interact with web pages, achieving an average performance of 14.8% on WebArena. 
+                The API-Based Agent performs tasks by making API calls and generating code without relying on web browsing, achieving an average accuracy of 29.2%. 
+                The Hybrid Agent combines both methods, dynamically switching between web browsing and API calling, depending on the task. 
+                This allows the execution of either API calls or web browsing actions, or both in combination, improving performance by more than 5 percentage points compared to the API-Based Agent.
+            </figcaption>
+        </figure>
 
         <p class="text abstract">
             This project is structured around three key aspects:
@@ -176,16 +191,14 @@
         
         <hr>
 
-        <div id='Difficulties in Multilingual MLLMs' class="vision-block">
-
-            <div id="sec:difficulties" class="sub-section">
-                <figure id="fig:example">
-                    <img data-zoomable="" draggable="false" src="static/img/example.png" alt="example">
-                    <figcaption>
-                        <strong>Figure 2:</strong> The API-based agent can often solve problems in many fewer function calls than traditional browsing agents. 
-                        In this task, web browsing failed to solve the intent ``find the number of commits the user `SaptakS` made to the repo `a11yproject` after 15 steps, while our API-based agent successfully completed the task with only three lines of code.
-                    </figcaption>
-                </figure>
+        <div id='browsing' class="browsing-block">
+            <figure id="fig:example">
+                <img data-zoomable="" draggable="false" src="static/img/example.png" alt="example">
+                <figcaption>
+                    <strong>Figure 2:</strong> The API-based agent can often solve problems in many fewer function calls than traditional browsing agents. 
+                    In this task, web browsing failed to solve the intent ``find the number of commits the user `SaptakS` made to the repo `a11yproject` after 15 steps, while our API-based agent successfully completed the task with only three lines of code.
+                </figcaption>
+            </figure>
 
                 <h1 class="text">Analyzing the Difficulties</h1>
                 <p class="text">
@@ -205,7 +218,6 @@
                 <p class="text">
                     <strong>4) Evaluation complexity:</strong> Developing an evaluation suite that accurately measures performance across languages and cultures requires substantial resources and expertise.
                 </p>
-            </div>
         
             <div id="Addressing Challenges with Pangea" class="sub-section">
                 <h1 class="text">Addressing Challenges with Pangea</h1>

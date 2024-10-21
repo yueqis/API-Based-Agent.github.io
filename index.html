@@ -110,7 +110,7 @@
                     <a href="https://yueqis.github.io/" class="author-link" target="_blank">Yueqi Song</a> &emsp;
                     <a href="https://frankxfz.me/" class="author-link" target="_blank">Frank Xu</a> &emsp;
                     <a href="https://shuyanzhou.github.io/" class="author-link" target="_blank">Shuyan Zhou</a> &emsp;
-                    <a href="https://www.phontron.com/" class="author-link" target="_blank">Graham Neubig<sup>&dagger;</sup></a>
+                    <a href="https://www.phontron.com/" class="author-link" target="_blank">Graham Neubig</a>
                     <p></p>
                     <a href="https://www.cs.cmu.edu/" class="affiliation-link" id="affiliation" target="_blank">Carnegie Mellon University</a>
                 </p>
@@ -130,7 +130,7 @@
         </p>
         <d-figure id="fig:main" style="display: flex; justify-content: center;">
             <figure>
-                <img data-zoomable="" draggable="false" src="static/img/main.png" alt="main" style="width: 100%" class="center">
+                <img data-zoomable="" draggable="false" src="static/img/main.png" alt="main">
                 <figcaption>
                     <strong>Figure 1:</strong> A comparison of three types of agents. The Browsing Agent performs tasks through web browsing only, utilizing the accessibility tree to interact with web pages, achieving an average performance of 14.8% on WebArena. The API-Based Agent performs tasks by making API calls and generating code without relying on web browsing, achieving an average accuracy of 29.2%. The Hybrid Agent combines both methods, dynamically switching between web browsing and API calling, depending on the task. This allows the execution of either API calls or web browsing actions, or both in combination, improving performance by more than 5 percentage points compared to the API-Based Agent.
                 </figcaption>
@@ -146,32 +146,26 @@
             </ol>
         </p>
 
-        <figure id="fig:example">
-            <img data-zoomable="" draggable="false" src="static/img/example.png" alt="example">
-            <figcaption>
-                <strong>Figure 2:</strong> The API-based agent can often solve problems in many fewer function calls than traditional browsing agents. 
-                In this task, web browsing failed to solve the intent ``find the number of commits the user `SaptakS` made to the repo `a11yproject` after 15 steps, while our API-based agent successfully completed the task with only three lines of code.
-            </figcaption>
-        </figure>
-
-        <p class="text abstract">
-            Pangea-7B not only sets a new multilingual multicultural multimodal model, but also acts as an extensive, open-source guide for developing instruction-tuned multilingual and multicultural MLLMs. 
-            Pangea is completely open-source, including <a href="https://huggingface.co/neulab/Pangea-7B" target="_blank">model weights</a>, instruction-tuning data <a href="https://huggingface.co/datasets/neulab/PangeaInstruct" target="_blank">PangeaIns</a>, and <a href="https://github.com/neulab/Pangea" target="_blank">instruction-tuning and evaluation code</a>. 
-            Our aim is to facilitate the development of inclusive and robust multilingual MLLMs, prompting equity and accessibility across a broader linguistic and cultural spectrum.
-        </p>
-
         <div class="icon-row">
-            <a href="#model" class="icon-link">
-                <img src="static/img/icons/pangea_logo.png" alt="Pangea Logo" class="icon">
-                Pangea-7B<br>(Modeling)
+            <a href="#browsing" class="icon-link">
+                <img src="static/img/icons/web.png" alt="browsing Logo" class="icon">
+                Browsing Tasks
             </a>
-            <a href="#instruction_data" class="icon-link">
-                <img src="static/img/icons/data.png" alt="Data Logo" class="icon">
-                PangeaIns<br>(Instruction Data)
+            <a href="#api" class="icon-link">
+                <img src="static/img/icons/api.png" alt="api Logo" class="icon">
+                API-Based Agent
             </a>
-            <a href="#benchmarking" class="icon-link">
-                <img src="static/img/icons/eval.png" alt="Eval Logo" class="icon">
-                PangeaBench<br>(Benchmarking)
+            <a href="#hybrid" class="icon-link">
+                <img src="static/img/icons/hybrid.png" alt="hybrid Logo" class="icon">
+                Hybrid Agent
+            </a>
+            <a href="#experiment" class="icon-link">
+                <img src="static/img/icons/task.png" alt="task Logo" class="icon">
+                Experiments
+            </a>
+            <a href="#results" class="icon-link">
+                <img src="static/img/icons/result.png" alt="result Logo" class="icon">
+                Results and Analysis
             </a>
         </div>
 
@@ -185,6 +179,14 @@
         <div id='Difficulties in Multilingual MLLMs' class="vision-block">
 
             <div id="sec:difficulties" class="sub-section">
+                <figure id="fig:example">
+                    <img data-zoomable="" draggable="false" src="static/img/example.png" alt="example">
+                    <figcaption>
+                        <strong>Figure 2:</strong> The API-based agent can often solve problems in many fewer function calls than traditional browsing agents. 
+                        In this task, web browsing failed to solve the intent ``find the number of commits the user `SaptakS` made to the repo `a11yproject` after 15 steps, while our API-based agent successfully completed the task with only three lines of code.
+                    </figcaption>
+                </figure>
+
                 <h1 class="text">Analyzing the Difficulties</h1>
                 <p class="text">
                     There are four major challenges in training a multilingual MLLM:

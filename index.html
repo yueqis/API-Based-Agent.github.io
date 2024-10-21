@@ -238,23 +238,39 @@
             <h3 class="text">Transitioning from Web Browsing to API Calling</h3>
             <p class="text">
                 Approaches utilizing APIs is avoid complexity in web browsing, and can minimize the steps involved in complex workflows.
-                For example, as discussed in Figure <a href="#fig:example">Figure 2</a>, to accomplish the task of finding the number of commits by <code>SaptakS</code> in <code>a11yproject</code>, a basic method for implementing API calling, such as CodeAct <d-cite key="wang2024executable"></d-cite>, could directly call the repository's commit history via a simple API request <code>GET /api/a11yproject/commits</code> and then filter the results to find the commits made by <code>SaptakS</code>. 
+                For example, as discussed in <a href="#fig:example">Figure 2</a>, to accomplish the task of finding the number of commits by <code>SaptakS</code> in <code>a11yproject</code>, a basic method for implementing API calling, such as CodeAct <d-cite key="wang2024executable"></d-cite>, could directly call the repository's commit history via a simple API request <code>GET /api/a11yproject/commits</code> and then filter the results to find the commits made by <code>SaptakS</code>. 
                 The task could completed in just three lines of Python code, showcasing the clear efficiency and precision that methods based on API calling could offer compared to web browsing. 
             </p>
-    
-                
-            <div class="subsection">
-                <h3 class="text">Curating Existing Multilingual Instructions</h3>
-                <p class="text">
-                    To further enrich PangeaIns, we conducted an extensive survey of the available multilingual multimodal literature and datasets, including those hosted on HuggingFace. As a result, we incorporated several high-quality, open-source datasets into our PangeaIns mixture. These include Chinese ALLaVA-4V <d-cite key="chen2024allava"></d-cite>, Viet Document and OCR QA <d-cite key="doan2024vintern"></d-cite>, Llava Chinese <d-cite key="ChineseLLaVA"></d-cite>, Llava Medical Chinese Instruction <d-cite key="ChineseLLaVA_Med"></d-cite>, LLaVA-Japanese-Instruct <d-cite key="LLaVA_JP_Instruct_108K"></d-cite>, MTVQA <d-cite key="tang2024mtvqa"></d-cite>, Japanese STAIR Captions <d-cite key="yoshikawa2017stair"></d-cite>, Russian GQA <d-cite key="deepvk2024gqa_ru"></d-cite>, French Doc-VQA <d-cite key="SoSoDocvqa"></d-cite>, and French Table-VQA <d-cite key="AgDeTQA"></d-cite>. Each of these datasets brings unique linguistic and cultural perspectives to the mix, covering a wide range of languages and task types. 
-                </p>
-            </div>
+            <h3 class="text">Obtaining APIs for Agent Use</h3>
+            <p class="text">
+                The process of acquiring APIs typically involves looking up official API documentation on a website.
+                To maintain a structured and readable format of API documentations, we could utilize either OpenAPI YAML-style and README-style documentations. 
+                Some websites might offer official YAML oor README documentations of APIs, and in such cases, in the prompt we provide API documentations sourced directly from the public API documentation provided for the website. 
+                In other cases, where no official YAML or README documentations are provided, we could leverage LLMs like <a href="https://openai.com/index/hello-gpt-4o/" target="_blank">GPT-4o</a> to generate these YAML or README files. 
+                By prompting GPT-4o with the relevant implementation details of the APIs (for example, the implementation of the APIs), we could generate comprehensive documentation, including input parameters, expected outputs, and example API calls, as depicted in <a href="#fig:api">Figure 3</a>.
+            </p>
+            <p class="text">
+                <strong>One-Stage Documentation for Small API Sets:</strong>
+                For websites with a smaller number of API endpoints, we directly incorporate the full documentation into the prompt provided to the agent. 
+                Specifically, we use a threshold of 100 APIs, but this could be adjusted depending on the supported language model context size.
+            </p>
+            <p class="text">
+                <strong>Two-Stage Documentation Retrieval for Large API Sets:</strong>
+                For websites with a larger number of endpoints, providing the full documentation directly within the prompt was impractical due to the size limitations of agent inputs. 
+                To address this, we employed a two-stage documentation retrieval process, which allowed access to only the relevant information as needed, keeping the initial prompt concise.
+                In the first stage, the user prompt could provide a description of the task, with a list of all available API endpoints along with a very brief description of each API. 
+                This initial summary helps facilitating understanding the scope of the available APIs while staying within the prompt size constraints.
+                In the second stage, if the model determines that it needs detailed information about a specific API endpoint or some API endpoints, it can use a tool called <code>get_api_documentation</code>. 
+                This tool searches a dictionary that maps an API to its documentation, enabling the model to retrieve the full README or YAML documentation for any given endpoint by calling <code>get_api_documentation</code> with the endpoint's identifier. 
+                This might include the input parameters, output formats, and examples of how to interact with the endpoint. 
+                For example, to retrieve the documentation for the endpoint <code>GET /api/{id}/commits</code>, the agent would call <code>get_api_documentation("GET /api/{id}/commits")</code>, and an example returned API documentation is the documentation in <a href="#fig:api">Figure 3</a>. 
+            </p>
         </div>
 
-        <div id='model' class="model-block">
-            <h1 class="text">Pangea-7B</h1>
+        <div id='hybrid' class="hybrid-block">
+            <h1 class="text">Hybrid Browsing+API Calling Agents</h1>
             <p class="text">
-                We train Pangea-7B on PangeaIns, our multilingual multimodal dataset comprising 6 million samples across 39 languages. The model is based on LLaVA-Next architecture <d-cite key="liu2024llavanext"></d-cite> with Qwen2-7B-Instruct <d-cite key="yang2024qwen2"> as the language model backbone. We employ a learning rate of 2e-5, a batch size of 512, coupled with a cosine decay schedule with 0.03 warmup steps. We train the model for 1 epoch.
+                Hybrid
             </p>
         </div>
 

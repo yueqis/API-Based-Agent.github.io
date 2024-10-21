@@ -53,7 +53,7 @@
             <div class="header-container" id="header-container">
                 <div class="header-content">
                     <h1 style="margin-top: 0px"><i> </i></h1>
-                    <h1 style="margin-top: 0px"><i>Beyond Browsing:</i></h1>
+                    <h1><i>Beyond Browsing:</i></h1>
                     <h1><i>API-Based Web Agents</i></h1>
                         <p>
                             This project explores a novel approach to web agents by enabling them to use <strong>APIs</strong> in addition to traditional web-browsing techniques. 
@@ -77,14 +77,14 @@
 
                     <div class="button-container">
                         <!-- replace arxiv -->
-                        <a href="https://arxiv.org/abs/2406.16860" class="button paper-link" target="_blank">
+                        <a href="https://arxiv.org/abs/" class="button paper-link" target="_blank">
                             <span class="icon is-small">
                                 <i class="ai ai-arxiv"></i>
                             </span>
                             arXiv
                         </a>
                         <!-- replace pdf -->
-                        <a href="https://arxiv.org/pdf/2406.16860" class="button paper-link" target="_blank">
+                        <a href="https://arxiv.org/pdf/" class="button paper-link" target="_blank">
                             <span class="icon is-small">
                                 <i class="fas fa-file-pdf"></i>
                             </span>
@@ -270,70 +270,67 @@
         <div id='hybrid' class="hybrid-block">
             <h1 class="text">Hybrid Browsing+API Calling Agents</h1>
             <p class="text">
-                Hybrid
+                Then, the question arises: given the benefits of API calling, <strong>should we discard web browsing altogether?</strong> 
+                The key limitation is that not all websites provide comprehensive or well-documented APIs, necessitating traditional web browsing in certain cases. 
+                To address this, we propose a hybrid agent that dynamically switches between API calls and web browsing based on task requirements. 
+                This agent has three options per step: communicating in natural language, generating Python code for API calls, or performing web browsing actions. 
+                The hybrid agent's prompt includes both API documentation and web-browsing instructions, allowing it to adapt flexibly to each task's demands. 
+                This approach improves performance by leveraging the strengths of both methods, depending on API availability and documentation quality.
             </p>
         </div>
 
-        <div id='benchmarking' class="benchmark-block">
-            <h1 class="text">PangeaBench: Evaluation of Multilingual Multimodal Models</h1>
+        <div id='experiment' class="experiment-block">
+            <h1 class="text">Experimental Setup</h1>
+            <div id="tab:quality" style="display: flex; flex-direction: column; align-items: center;" class="figure">
+                <div class="table-container">
+                    <table class="data-table" style="border-collapse: collapse; width: 100%; text-align: center;">
+                        <thead>
+                            <tr>
+                                <th style="border: 1px solid #000; padding: 8px;">Websites</th>
+                                <th style="border: 1px solid #000; padding: 8px;">Gitlab</th>
+                                <th style="border: 1px solid #000; padding: 8px;">Map</th>
+                                <th style="border: 1px solid #000; padding: 8px;">Shopping</th>
+                                <th style="border: 1px solid #000; padding: 8px;">Admin</th>
+                                <th style="border: 1px solid #000; padding: 8px;">Reddit</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="border: 1px solid #000; padding: 8px;">Number of Endpoints</td>
+                                <td style="border: 1px solid #000; padding: 8px;">988</td>
+                                <td style="border: 1px solid #000; padding: 8px;">53</td>
+                                <td style="border: 1px solid #000; padding: 8px;">556</td>
+                                <td style="border: 1px solid #000; padding: 8px;">556</td>
+                                <td style="border: 1px solid #000; padding: 8px;">31</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #000; padding: 8px;">API Quality</td>
+                                <td style="border: 1px solid #000; padding: 8px;">Good</td>
+                                <td style="border: 1px solid #000; padding: 8px;">Good</td>
+                                <td style="border: 1px solid #000; padding: 8px;">Fair</td>
+                                <td style="border: 1px solid #000; padding: 8px;">Fair</td>
+                                <td style="border: 1px solid #000; padding: 8px;">Poor</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #000; padding: 8px;">Documentation Quality</td>
+                                <td style="border: 1px solid #000; padding: 8px;">Good</td>
+                                <td style="border: 1px solid #000; padding: 8px;">Good</td>
+                                <td style="border: 1px solid #000; padding: 8px;">Fair</td>
+                                <td style="border: 1px solid #000; padding: 8px;">Fair</td>
+                                <td style="border: 1px solid #000; padding: 8px;">Poor</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <figcaption style="text-align: center; width: 100%;">
+                Table 1: Number of endpoints, quality of API, and documentation quality for WebArena websites.
+            </figcaption>
+            
             <p class="text">
-                To assess the capabilities of Pangea-7B across a variety of languages, cultures, and task types, we have developed PangeaBench, a comprehensive multilingual and multimodal evaluation suite.
-                The overview and examples of PangeaBench from each task are shown in <a href="#fig:eval_data">Figure 4</a>.
+                Here, we provide a detailed analysis of the API support for various websites used in the WebArena tasks, categorized into three levels: good, medium, and poor. 
+                The availability, functionality, and documentation of APIs, as described in <a href="#tab:quality">Table 1</a>, play a crucial role in the efficiency and flexibility of our agents.
             </p>
-            <div class="subsection">
-                <h3 class="text">Multimodal Tasks</h3>
-                
-                <p class="text">
-                    <strong>Multimodal Chat</strong>:
-                    The Multimodal Chat task evaluates a model's ability to engage in dynamic conversations using both text and images. 
-                    Multilingual LlavaBench <d-cite key="yu-etal-2022-beyond"></d-cite> stands as the only benchmark for assessing multilingual long-form generation in MLLMs, using coarse-grained evaluation criteria focused on helpfulness, relevance, and accuracy. 
-                    However, research shows that these criteria may not align well with human judgment <d-cite key="ye2023flask"></d-cite> <d-cite key="kim2023prometheus"></d-cite> <d-cite key="lee2024prometheusvision"></d-cite> <d-cite key="kim2024biggen"></d-cite> <d-cite key="kim2024prometheus"></d-cite>. 
-                    To improve assessment, we developed a new benchmark called xChatBench, featuring fine-grained evaluation criteria across diverse scenarios. 
-                    It addresses a common issue where English-centric models respond in English regardless of the query language. This behavior is penalized in xChatBench, receiving a score of zero to emphasize the importance of multilingual accuracy and effective communication. 
-                    This strict criterion is essential for enhancing user experience in multilingual contexts.
-                </p>
-                <p class="text">
-                    <strong>Captioning</strong>:
-                    The XM100 dataset was created to evaluate models in multilingual image captioning, consisting of images paired with captions in 36 languages <d-cite key="thapliyal2022crossmodal"></d-cite>. 
-                    To improve the dataset's diversity and streamline the evaluation, images were clustered based on their captions, and 100 representative images were manually selected from these clusters. 
-                    This method reduces redundancy and ensures a broader range of images and captions, making XM100 an effective benchmark for assessing multilingual captioning capabilities.
-                </p>
-                <p class="text">
-                    <strong>Multilingual VQA</strong>:
-                    This task evaluates a model's ability to answer questions about images in multiple languages. 
-                    The xGQA <d-cite key="pfeiffer2022xgqa"></d-cite> and MaXM <d-cite key="changpinyo2022maxm"></d-cite> datasets offer a wide variety of visual question-answering challenges across different languages and scripts, focusing on cross-lingual visual understanding. 
-                    These datasets provide a comprehensive benchmark to assess the model's proficiency in handling diverse linguistic and visual contexts.
-                </p>
-                <p class="text">
-                    <strong>Multi-Subject Reasoning</strong>:
-                    The xMMMU and M3Exam <d-cite key="zhang2023m3exam"></d-cite> datasets assess a model's reasoning abilities across various academic subjects. 
-                    xMMMU is a machine-translated version of MMMU <d-cite key="yue2024mmmu"></d-cite> validation questions, focusing on multimodal reasoning in multiple subjects. 
-                    It includes 300 questions translated into six languages using GPT-4. 
-                    M3Exam presents complex, real-world educational questions that require both textual and visual understanding. 
-                    These datasets provide a comprehensive benchmark for evaluating models' academic and multimodal reasoning skills. 
-                    Further details on the translation quality of xMMMU and descriptions of other datasets are available in the evaluation section.
-                </p>
-            </div>
-
-            <d-figure id="fig:eval_data">
-                <figure>
-                    <img data-zoomable="" draggable="false" src="static/img/xmm_eval_example.png" alt="eval data">
-                    <figcaption>
-                        <strong>Figure 4:</strong> Overview of PangeaBench, which contains 5 multimodal and 3 text tasks covering 14 datasets (including two newly curated xChatBench and xMMMU datasets). The table provides details about the datasets, while the figure shows evaluation examples from five different multimodal eval tasks in our PangeaBench.
-                    </figcaption>
-                </figure>
-            </d-figure>
-
-            <div class="subsection">
-                <h3 class="text">Text-Only Multilingual Datasets</h3>
-                <p class="text">
-                    While multimodal tasks are critical for evaluating the holistic capabilities of models like PangeaBench, text-only multilingual tasks provide an equally essential dimension to assess.
-                    We include three tasks QA, Translation, and Reasoning covering five datasets for the text-only evaluations in PangeaBench.
-                    Specifically, we include TydiQA <d-cite key="clark2020tydi"></d-cite> to test the model's ability to answer questions across 11 typologically diverse languages. We adopt the FLORES <d-cite key="nllb2024scaling"></d-cite> dataset to assess machine translation performance across multiple languages. 
-                    We sample 11 languages (denoted as FLORES-Sub). We use MMMLU <d-cite key="MMMLU"></d-cite>, a human-translated version of MMLU to test the general language understanding of models. 
-                    We use XStoryCloze <d-cite key="lin2022fewshotlearningmultilinguallanguage"></d-cite> and MGSM <d-cite key="shi2022mgsm"></d-cite> to test the model's commonsense and mathematical reasoning ability in multilingual contexts respectively. 
-                </p>
-            </div>
 
         </div>
 
@@ -787,144 +784,7 @@
                 2) Maintained Performance from its Text Backbone:  Pangea-7B generally maintains or sees slight drops in performance on most text-only benchmarks compared with its text backbone Qwen2-7B-Instruct. Notably, the model shows a significant improvement in MGSM. This improvement is directly attributable to the inclusion of math-related instructions in PangeaIns, which enhances the model's capability to handle complex multilingual reasoning and mathematical tasks.
             </p>
 
-            <div id="tab:text_table" style="display: flex; flex-direction: column; align-items: center;" class="figure">
-                <div class="table-container">
-                    <table class="data-table" style="border-collapse: collapse; width: 100%;">
-                        <thead>
-                            <tr>
-                                <th rowspan="2">Models</th>
-                                <th colspan="2">AVG (all)</th>
-                                <th colspan="2">FLORES-Sub</th>
-                                <th colspan="2">TyDiQA</th>
-                                <th colspan="2">XStoryCloze</th>
-                                <th colspan="2">MGSM</th>
-                                <th colspan="2">MMMLU</th>
-                            </tr>
-                            <tr>
-                                <th>en</th>
-                                <th>mul</th>
-                                <th>x->en</th>
-                                <th>en->x</th>
-                                <th>en</th>
-                                <th>mul</th>
-                                <th>en</th>
-                                <th>mul</th>
-                                <th>en</th>
-                                <th>mul</th>
-                                <th>en</th>
-                                <th>mul</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Vicuna-1.5-7B</td>
-                                <td>52.1</td>
-                                <td>38.7</td>
-                                <td>55.6</td>
-                                <td>42.4</td>
-                                <td>59.7</td>
-                                <td>52.7</td>
-                                <td>78.1</td>
-                                <td>57.4</td>
-                                <td>17.6</td>
-                                <td>6.4</td>
-                                <td>49.5</td>
-                                <td>34.7</td>
-                            </tr>
-                            <tr>
-                                <td>Qwen2-7B-Instruct</td>
-                                <td>66.6</td>
-                                <td><b>54.5</b></td>
-                                <td><b>61.8</b></td>
-                                <td><b>46.0</b></td>
-                                <td>72.2</td>
-                                <td><b>71.2</b></td>
-                                <td><b>80.3</b></td>
-                                <td><b>61.9</b></td>
-                                <td>48.8</td>
-                                <td>40.4</td>
-                                <td><b>70.1</b></td>
-                                <td><b>53.1</b></td>
-                            </tr>
-                            <tr>
-                                <td>Llava-1.5-7B</td>
-                                <td>53.1</td>
-                                <td>39.0</td>
-                                <td>54.7</td>
-                                <td>41.5</td>
-                                <td>66.8</td>
-                                <td>52.8</td>
-                                <td>79.1</td>
-                                <td>57.6</td>
-                                <td>14.8</td>
-                                <td>7.6</td>
-                                <td>50.2</td>
-                                <td>35.7</td>
-                            </tr>
-                            <tr>
-                                <td>Llava-Next-7B</td>
-                                <td>54.0</td>
-                                <td>38.9</td>
-                                <td>54.8</td>
-                                <td>41.4</td>
-                                <td>68.3</td>
-                                <td>52.1</td>
-                                <td>79.1</td>
-                                <td>57.1</td>
-                                <td>15.6</td>
-                                <td>7.5</td>
-                                <td>52.1</td>
-                                <td>36.5</td>
-                            </tr>
-                            <tr>
-                                <td>Phi-3.5-Vision</td>
-                                <td>60.7</td>
-                                <td>41.7</td>
-                                <td>28.5</td>
-                                <td>32.5</td>
-                                <td><b>75.9</b></td>
-                                <td>51.3</td>
-                                <td>77.9</td>
-                                <td>54.8</td>
-                                <td>59.2</td>
-                                <td>33.1</td>
-                                <td>62.0</td>
-                                <td>36.7</td>
-                            </tr>
-                            <tr>
-                                <td>PALO-7B</td>
-                                <td>52.0</td>
-                                <td>37.5</td>
-                                <td>52.9</td>
-                                <td>40.4</td>
-                                <td>69.4</td>
-                                <td>50.8</td>
-                                <td>77.4</td>
-                                <td>57.2</td>
-                                <td>13.6</td>
-                                <td>5.8</td>
-                                <td>46.7</td>
-                                <td>33.4</td>
-                            </tr>
-                            <tr>
-                                <td>PANGEA-7B (Ours)</td>
-                                <td><b>72.8</b></td>
-                                <td>54.3</td>
-                                <td>60.7</td>
-                                <td>44.9</td>
-                                <td>73.7</td>
-                                <td>66.0</td>
-                                <td>79.1</td>
-                                <td>61.2</td>
-                                <td><b>82.0</b></td>
-                                <td><b>47.4</b></td>
-                                <td>68.4</td>
-                                <td>52.2</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+            
             <figcaption style="text-align: center; width: 100%;">
                 Table 2: Models' multilingual text-only evaluation results on PangeaBench.
             </figcaption>

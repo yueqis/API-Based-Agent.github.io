@@ -52,9 +52,9 @@
         <div class="header-wrapper">
             <div class="header-container" id="header-container">
                 <div class="header-content">
-                    <h1 style="margin-top: 0px"><i> </i></h1>
-                    <h1><i>Beyond Browsing:</i></h1>
-                    <h1><i>API-Based Web Agents</i></h1>
+                    <h1 style="margin-top: 0px"><i>Beyond Browsing:</i></h1>
+                    <h2><i>API-Based Web Agents</i></h2>
+
                         <p>
                             This project explores a novel approach to web agents by enabling them to use <strong>APIs</strong> in addition to traditional web-browsing techniques. 
                             By leveraging API calls, agents can perform tasks more efficiently and accurately, especially on websites with comprehensive API support.
@@ -328,9 +328,14 @@
             </figcaption>
             
             <p class="text">
-                Here, we provide a detailed analysis of the API support for various websites used in the WebArena tasks, categorized into three levels: good, medium, and poor. 
+                Here, we provide a detailed analysis of the API support for various websites used in the WebArena tasks, categorized into three levels: good, fair, and poor. 
                 The availability, functionality, and documentation of APIs, as described in <a href="#tab:quality">Table 1</a>, play a crucial role in the efficiency and flexibility of our agents.
+                <strong>Good API support:</strong> Gitlab and Map demonstrates good API support, since they provide significant coverage for the tasks in WebArena and maintain good API documentation.
+                <strong>Fair API support:</strong> The Shopping and Shopping Admin websites provide a reasonable level of support for common shopping tasks such as managing products, categories, and customer accounts, while some features are absent, such as the ability to add items to a wish list. The API documentation is fairly detailed and covers most core functionalities.
+                <strong>Poort API support:</strong> The Reddit tasks in WebArena are based on a self-hosted limited clone of the <a href="https://codeberg.org/Postmill/Postmill" target="_blank">Reddit website</a>, with limited functionalities as compared to the official site. It offers no API documentation, making it the least API-friendly website in the benchmark.
             </p>
+
+            <h3 class="text">Evaluation Framework</h3>
 
         </div>
 

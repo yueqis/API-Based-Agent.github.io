@@ -234,46 +234,15 @@
                 For example, one could use the Python <code>requests</code> library, by calling <code>requests.get("gitlab.com/api/a11yproject/commits")</code>, to retrieve all commits of the repository <code>a11yproject</code>. 
                 This would return a JSON list containing all the commits to this repo, as shown in <a href="#fig:api">Figure 3</a>.
             </p>
-            
-            <div class="subsection">
-                <h3 class="text">Multicultural Understanding Instructions</h3>
-                <p class="text">
-                    While machine translation enables us to scale across multiple languages, data translated from English is still Anglo-centric in its coverage of cultural <d-cite key="yu-etal-2022-beyond"></d-cite>.
-                    To address this, we developed a pipeline focused on creating instructions for multicultural understanding. 
-                    The pipeline of creating multicultural understanding instructions is shown in <a href="#fig:cultural_understanding_pipeline">Figure 3</a>.
-                </p>
-                <d-figure id="fig:cultural_understanding_pipeline">
-                    <figure>
-                        <img data-zoomable="" draggable="false" src="static/img/cultural_data_gen_pipeline.png" alt="Overview of multicultural understanding instructions data generation pipeline.">
-                        <figcaption>
-                            <strong>Figure 3:</strong> Overview of multicultural understanding instructions data generation pipeline.
-                        </figcaption>
-                    </figure>
-                </d-figure>
+
+            <h3 class="text">Transitioning from Web Browsing to API Calling</h3>
+            <p class="text">
+                Approaches utilizing APIs is avoid complexity in web browsing, and can minimize the steps involved in complex workflows.
+                For example, as discussed in Figure <a href="#fig:example">Figure 2</a>, to accomplish the task of finding the number of commits by <code>SaptakS</code> in <code>a11yproject</code>, a basic method for implementing API calling, such as CodeAct <d-cite key="wang2024executable"></d-cite>, could directly call the repository's commit history via a simple API request <code>GET /api/a11yproject/commits</code> and then filter the results to find the commits made by <code>SaptakS</code>. 
+                The task could completed in just three lines of Python code, showcasing the clear efficiency and precision that methods based on API calling could offer compared to web browsing. 
+            </p>
     
-                <p class="text">
-                    <strong>Curation of Culturally Diverse Images.</strong> 
-                    We began by sampling 10 million images from the LAION-Multi dataset <d-cite key="schuhmann2022laion"></d-cite>.
-                    1) Heuristic Filtering: We implemented automatic filtering based on several key criteria: Image Size, Aspect Ratio, Text Length, NSFW content, Offensive Text, Deduplication, and CLIP Score (used to assess the alignment between the image and its textual description). This helped remove low-quality or inappropriate images and ensured the remaining dataset adhered to quality standards.
-                    2) LLM Scoring: we employed Llama-3.1-8B-Instruct <d-cite key="dubey2024llama"></d-cite> to evaluate the relevance and quality of the accompanying text descriptions (alt text) for each image. The following tasks are evaluated by the model: text quality, subject classificationt, country/region classification (images classified as `no specific country` were excluded).
-                    3) Avoiding Overrepresentation: We downsampled images from frequently occurring subjects.
-                    Ultimately, we curated a final set of 1 million high-quality, culturally specific images that form the foundation of our dataset.
-                </p>
                 
-                <p class="text">
-                    <strong>Captioning of Multicultural Images with Different Languages.</strong> 
-                    To provide context and enhance the models' ability to interpret the images accurately, we regenerated a more detailed caption using Gemini 1.5 Pro based on high-quality original text. Each image was accompanied by a caption written in the language corresponding to its cultural origin.
-                </p>
-
-                <p class="text">
-                    <strong>Generating Multilingual and Cross-Cultural Instructions.</strong> 
-                    For each image, we used Gemini 1.5 Pro to generate captions in native languages, leveraging high-quality alt text to enrich context. 
-                    This alt text provided crucial cultural and contextual information, such as identifying key figures or locations. We carefully engineered prompts to create multilingual instructions based on 13 task types like Information Seeking and Cultural Interpretation. 
-                    Each image had up to two QA pairs, ensuring diverse interactions. This approach enabled the model to better capture visual, cultural, and contextual nuances and respond effectively across various linguistic contexts.
-                </p>
-
-            </div>
-
             <div class="subsection">
                 <h3 class="text">Curating Existing Multilingual Instructions</h3>
                 <p class="text">

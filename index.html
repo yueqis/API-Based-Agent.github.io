@@ -196,53 +196,12 @@
                 A traditional browsing-based approach involves logging in, navigating to the correct project, and attempting to scroll through and find the user's commits, and thus the task becomes too complex and fails after the agent's 15-step limit.
             </p>
             <figure id="fig:example">
-                <img data-zoomable="" draggable="false" src="static/img/example.png" alt="example">
+                <img data-zoomable="" draggable="false" src="static/img/example.png" alt="example" style="width: 80%" class="center">
                 <figcaption>
                     <strong>Figure 2:</strong> The API-based agent can often solve problems in many fewer function calls than traditional browsing agents. 
                     In this task, web browsing failed to solve the intent "find the number of commits the user `SaptakS` made to the repo `a11yproject`" after 15 steps, while our API-based agent successfully completed the task with only three lines of code.
                 </figcaption>
-            </figure>
-
-                
-                <p class="text">
-                    There are four major challenges in training a multilingual MLLM:
-                </p>
-                <p class="text">
-                    <strong>1) Data scarcity:</strong> High-quality multilingual multimodal data is scarce, especially in low-resource languages, which makes it difficult to create large-scale training data. 
-                    <d-cite key="yu-etal-2022-beyond"></d-cite>
-                </p>
-                <p class="text">
-                    <strong>2) Cultural nuances:</strong> Visual interpretations are context-dependent and vary across cultures. 
-                    <d-cite key="NEURIPS2023_d08b6801"></d-cite>
-                </p>
-                <p class="text">
-                    <strong>3) Catastrophic forgetting:</strong> Training on many languages or modalities often results in suboptimal performance on some subsets and requires careful balancing.
-                </p>
-                <p class="text">
-                    <strong>4) Evaluation complexity:</strong> Developing an evaluation suite that accurately measures performance across languages and cultures requires substantial resources and expertise.
-                </p>
-        
-            <div id="Addressing Challenges with Pangea" class="sub-section">
-                <h1 class="text">Addressing Challenges with Pangea</h1>
-                <p class="text">
-                    To address these challenges, we introduce Pangea, an open-sourced multilingual MLLM designed to bridge linguistic and cultural gaps in visual understanding tasks.
-                </p>
-                <p class="text">
-                    <strong>1) 6M multilingual instruction tuning data:</strong> Pangea is trained on PangeaIns, a high-quality multilingual multimodal instruction tuning dataset comprising 6 million samples in 39 typologically diverse languages, addressing data scarcity. PangeaIns combines existing open-source resources with newly created instructions focused on multicultural understanding. We curate high-quality English instructions, carefully translate them, and adapt them for multilingual contexts.
-                </p>
-                <p class="text">
-                    <strong>2) Multicultural instruction generation pipeline:</strong> To address Western-centric biases in visual representations, we source images from LAION-Multi 
-                    <d-cite key="schuhmann2022laion"></d-cite>, which includes images from various countries and captions in multiple languages. However, LAION-Multi contains many images that are not culturally representative of the country's speaking population. Additionally, the associated alt text is often short, noisy, and lacks sufficient detail. To combat these issues, we develop a multicultural multilingual multimodal instruction generation pipeline. This pipeline leverages an LLM 
-                    <d-cite key="dubey2024llama"></d-cite> to score and filter images based on cultural informativeness. We then enhance the remaining data by generating detailed descriptions and creating complex instructions that combine culturally relevant tasks with general multilingual scenarios. This approach improves the model's cultural understanding while maintaining robust multilingual performance.
-                </p>
-                <p class="text">
-                    <strong>3) Balanced data distribution:</strong> PangeaIns features an extensive and balanced distribution of languages, tasks, and cultural contexts (as shown in 
-                    <a href="#fig:train_data_distribution">Figure 2</a>).
-                </p>
-                <p class="text">
-                    <strong>4) PangeaBench:</strong> To evaluate Pangea-7B capabilities, we present PangeaBench, a comprehensive multilingual and multimodal evaluation suite comprising five multimodal and three text-based tasks across 14 datasets in 47 languages. PangeaBench assesses MLLMs' performance on open-domain multimodal chat, image captioning, cultural understanding, multimodal reasoning, and text-only tasks including question answering and complex math reasoning.
-                </p>
-            </div>
+            </figure>        
         </div>
 
         <div id="instruction_data" class="data-block">

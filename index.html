@@ -330,19 +330,126 @@
             <p class="text">
                 Here, we provide a detailed analysis of the API support for various websites used in the WebArena tasks, categorized into three levels: good, fair, and poor. 
                 The availability, functionality, and documentation of APIs, as described in <a href="#tab:quality">Table 1</a>, play a crucial role in the efficiency and flexibility of our agents.
+            </p>    
+            <p class="text">
                 <strong>Good API support:</strong> Gitlab and Map demonstrates good API support, since they provide significant coverage for the tasks in WebArena and maintain good API documentation.
+            </p>
+            <p class="text">
                 <strong>Fair API support:</strong> The Shopping and Shopping Admin websites provide a reasonable level of support for common shopping tasks such as managing products, categories, and customer accounts, while some features are absent, such as the ability to add items to a wish list. The API documentation is fairly detailed and covers most core functionalities.
+            </p>
+            <p class="text">
                 <strong>Poort API support:</strong> The Reddit tasks in WebArena are based on a self-hosted limited clone of the <a href="https://codeberg.org/Postmill/Postmill" target="_blank">Reddit website</a>, with limited functionalities as compared to the official site. It offers no API documentation, making it the least API-friendly website in the benchmark.
             </p>
 
             <h3 class="text">Evaluation Framework</h3>
+            <p class="text">
+                We employed OpenHands as our primary evaluation framework for developing and testing our agents, as it is an open-source platform designed for creating AI agents that interact with both software and web environments <d-cite key="wang2024opendevin"></d-cite>. 
+                OpenHands supports a variety of agent interfaces, allowing agents to execute actions while maintaining a detailed record of past steps. 
+                For coding tasks, it incorporates CodeAct <d-cite key="wang2024executable"></d-cite>, providing a sandboxed bash environment and Jupyter IPython capabilities. 
+                Additionally, OpenHands includes a web navigation agent using BrowserGym, which operates within a Chromium web browser powered by Playwright <d-cite key="workarena2024"></d-cite>. 
+                However, a limitation is that existing agents within OpenHands are specialized either in web browsing or coding/API-based interactions, but not both. 
+                To address this, we developed two new agents: an API-based agent that leverages the CodeAct framework and specialized instructions for API usage, and a hybrid agent that integrates web browsing functionalities with API calls. 
+                The hybrid agent dynamically selects between browsing actions and API calls based on task requirements, leveraging the current browser state, prior actions, and action outcomes. 
+                All agents use GPT-4o as the base large language model.
+            </p>
 
         </div>
 
-        <div id='eval' class="eval-block">
-            <h1 class="text">Evaluation</h1>
-
-            
+        <div id='result' class="result-block">
+            <h1 class="text">Results</h1>
+            <div id="table-webagents" style="display: flex; flex-direction: column; align-items: center;" class="figure">
+                <div class="table-container">
+                    <table class="data-table" style="border-collapse: collapse; width: 100%; text-align: center;">
+                        <thead>
+                            <tr>
+                                <th style="border: 1px solid #000; padding: 8px;">Agents</th>
+                                <th style="border: 1px solid #000; padding: 8px;">Gitlab</th>
+                                <th style="border: 1px solid #000; padding: 8px;">Map</th>
+                                <th style="border: 1px solid #000; padding: 8px;">Shopping</th>
+                                <th style="border: 1px solid #000; padding: 8px;">Admin</th>
+                                <th style="border: 1px solid #000; padding: 8px;">Reddit</th>
+                                <th style="border: 1px solid #000; padding: 8px;">Multi</th>
+                                <th style="border: 1px solid #000; padding: 8px;">AVG.</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="border: 1px solid #000; padding: 8px;">WebArena Base</td>
+                                <td style="border: 1px solid #000; padding: 8px;">15.0</td>
+                                <td style="border: 1px solid #000; padding: 8px;">15.6</td>
+                                <td style="border: 1px solid #000; padding: 8px;">13.9</td>
+                                <td style="border: 1px solid #000; padding: 8px;">10.4</td>
+                                <td style="border: 1px solid #000; padding: 8px;">6.6</td>
+                                <td style="border: 1px solid #000; padding: 8px;">8.3</td>
+                                <td style="border: 1px solid #000; padding: 8px;">12.3</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #000; padding: 8px;">AutoEval</td>
+                                <td style="border: 1px solid #000; padding: 8px;">25.0</td>
+                                <td style="border: 1px solid #000; padding: 8px;">27.5</td>
+                                <td style="border: 1px solid #000; padding: 8px;">39.6</td>
+                                <td style="border: 1px solid #000; padding: 8px;">20.9</td>
+                                <td style="border: 1px solid #000; padding: 8px;">20.8</td>
+                                <td style="border: 1px solid #000; padding: 8px;">16.7</td>
+                                <td style="border: 1px solid #000; padding: 8px;">26.9</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #000; padding: 8px;">AWM</td>
+                                <td style="border: 1px solid #000; padding: 8px;">35.0</td>
+                                <td style="border: 1px solid #000; padding: 8px;">42.2</td>
+                                <td style="border: 1px solid #000; padding: 8px;">32.1</td>
+                                <td style="border: 1px solid #000; padding: 8px;">29.1</td>
+                                <td style="border: 1px solid #000; padding: 8px;">54.7</td>
+                                <td style="border: 1px solid #000; padding: 8px;">18.8</td>
+                                <td style="border: 1px solid #000; padding: 8px;">35.5</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #000; padding: 8px;">SteP</td>
+                                <td style="border: 1px solid #000; padding: 8px;">32.2</td>
+                                <td style="border: 1px solid #000; padding: 8px;">31.2</td>
+                                <td style="border: 1px solid #000; padding: 8px;">50.8</td>
+                                <td style="border: 1px solid #000; padding: 8px;">23.6</td>
+                                <td style="border: 1px solid #000; padding: 8px;">57.5</td>
+                                <td style="border: 1px solid #000; padding: 8px;">10.4</td>
+                                <td style="border: 1px solid #000; padding: 8px;">36.5</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #000; padding: 8px;">Browsing Agent</td>
+                                <td style="border: 1px solid #000; padding: 8px;">12.8</td>
+                                <td style="border: 1px solid #000; padding: 8px;">20.2</td>
+                                <td style="border: 1px solid #000; padding: 8px;">10.2</td>
+                                <td style="border: 1px solid #000; padding: 8px;">22.0</td>
+                                <td style="border: 1px solid #000; padding: 8px;">10.4</td>
+                                <td style="border: 1px solid #000; padding: 8px;">10.4</td>
+                                <td style="border: 1px solid #000; padding: 8px;">14.8</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #000; padding: 8px;">API-Based Agent</td>
+                                <td style="border: 1px solid #000; padding: 8px;">43.9</td>
+                                <td style="border: 1px solid #000; padding: 8px;">45.4</td>
+                                <td style="border: 1px solid #000; padding: 8px;">25.1</td>
+                                <td style="border: 1px solid #000; padding: 8px;">20.3</td>
+                                <td style="border: 1px solid #000; padding: 8px;">18.9</td>
+                                <td style="border: 1px solid #000; padding: 8px;">8.3</td>
+                                <td style="border: 1px solid #000; padding: 8px;">29.2</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #000; padding: 8px;">Hybrid Agent</td>
+                                <td style="border: 1px solid #000; padding: 8px;">44.4</td>
+                                <td style="border: 1px solid #000; padding: 8px;">45.9</td>
+                                <td style="border: 1px solid #000; padding: 8px;">25.7</td>
+                                <td style="border: 1px solid #000; padding: 8px;">41.2</td>
+                                <td style="border: 1px solid #000; padding: 8px;">28.3</td>
+                                <td style="border: 1px solid #000; padding: 8px;">16.7</td>
+                                <td style="border: 1px solid #000; padding: 8px;">35.8</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>            
+            <figcaption style="text-align: center; width: 100%;">
+                Table 2: Performance of Agents across WebArena Websites. Note that SteP uses prompts inspired specifically by WebArena test set tasks, while other methods are task-agnostic. We achieve the highest performance among the task-agnostic agents.
+            </figcaption>
             <p class="text">
                 For evaluation, we compare Pangea-7B against several state-of-the-art open source baselines, including English-centric models Llava-1.5-7B <d-cite key="liu2023improvedllava"></d-cite>, Llava-Next-7B <d-cite key="liu2024llavanext"></d-cite>, Phi-3.5-Vision <d-cite key="abdin2024phi3technicalreporthighly"></d-cite>, Cambrian-8B <d-cite key="tong2024cambrian"></d-cite> and multilingual models PaliGemma-3B <d-cite key="beyer2024paligemma"></d-cite>, PALO-7B <d-cite key="PALO"></d-cite>, mBLIP mT0-XL and mBLIP BLOOMZ <d-cite key="geigle_etal_2024_mblip"></d-cite>. 
                 We also consider two text-only LLMs baselines Vicuna-1.5-7B <d-cite key="zheng2023judging"></d-cite> and Qwen2-7B-Instruct <d-cite key="yang2024qwen2"></d-cite>, which are the backbones of Llava-Next and our Pangea-7B respectively. 

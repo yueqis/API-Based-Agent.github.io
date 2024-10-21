@@ -204,27 +204,22 @@
             </figure>        
         </div>
 
-        <div id="instruction_data" class="data-block">
-            <h1 class="text">PangeaIns</h1>
+        <div id="api" class="api-block">
+            <h1 class="text">From Web Browsing to API Calling</h1>
             <p class="text">
-                Creating a truly multilingual, multicultural MLLM presents unique challenges. 
-                We developed PangeaIns, a diverse and high-quality dataset specifically designed for instruction tuning. 
-                PangeaIns features an extensive and balanced distribution of languages, tasks, and cultural contexts. 
-                Comprising 6 million samples in 39 languages, PangeaIns was curated with a focus on linguistic and cultural diversity. 
-                We empirically keep the final language ratio of English to Multilingual as 40%:60% as we found a significant portion of English data plays an important role in cross-lingual transfer. This is discussed in more details in (see <a href="#discussion">Discussion</a>).
-                <a href="#fig:train_data_distribution">Figure 2</a> shows the details of our PangeaIns's distribution. 
-                We implemented three key strategies to ensure comprehensive coverage, each addressing the specific hurdles encountered in multilingual multimodal learning. 
+                In contrast to web browsing, API calling offer a direct interface for machines to communicate with web services, reducing operational complexity.
             </p>
     
-            <div class="subsection">
-                <h3 class="text">Machine Translated Instructions</h3>
-                <p class="text" id="machine_translation">
-                    We first create a high-quality set of English multimodal instructions, which serve as the foundation for translation into other languages.
-                    <a href="#fig:train_data_distribution">Figure 2</a> shows the statistics of our translated datasets.
-                    Then, we use the proprietary model Gemini 1.5 Pro <d-cite key="deepmind_gemini_report"></d-cite> to translate the English instructions into 17 languages.
-                    Lastly, we developed a post-processing pipeline. This pipeline automatically corrected these errors or directly dropped the examples, ensuring that all translated instructions remained consistent.
-                </p>
-            </div>
+            <h3 class="text">APIs and API Documentation</h3>
+
+            <p class="text">
+                Websites with API support offer pre-defined endpoints for efficient task execution using standardized protocols like REST. 
+                These APIs enable interactions via HTTP requests (e.g., <code>GET</code>, <code>POST</code>, <code>PUT</code>) and return structured data such as JSON objects. 
+                API documentation is typically provided in formats like README, OpenAPI YAML, or plain text, offering guidance on using the APIs. 
+                For instance, GitLab's API documentation for the endpoint <code>GET /api/{id}/commits</code> provides details on functionality, input arguments, and output types, allowing tasks like retrieving repository commits through a simple Python call with the <code>requests</code> library.
+            </p>
+            
+            
             <div class="subsection">
                 <h3 class="text">Multicultural Understanding Instructions</h3>
                 <p class="text">
